@@ -1,0 +1,115 @@
+import 'package:mobile/services/auth_service.dart';
+import 'package:mobile/services/place_service.dart';
+import 'package:mobile/services/telaSharedPrefs.dart';
+import 'package:mobile/services/transaction_service.dart';
+import 'package:mobile/services/tv_service.dart';
+import 'package:mobile/ui/views/IdentificationView/identificationView.dart';
+import 'package:mobile/ui/views/LoginView/loginView.dart';
+import 'package:mobile/ui/views/SignInView/signInView.dart';
+import 'package:mobile/ui/views/acceuil/acceuil.dart';
+import 'package:mobile/ui/views/buyAbonnement/buyabonnement.dart';
+import 'package:mobile/ui/views/buyVisitePass/buyVisitePass.dart';
+import 'package:mobile/ui/views/camera/camera_view.dart';
+import 'package:mobile/ui/views/camera/capture.dart';
+import 'package:mobile/ui/views/cgu/cgu.dart';
+import 'package:mobile/ui/views/cguFinance/cguFinance.dart';
+import 'package:mobile/ui/views/ebank/bank_resume/bank.dart';
+import 'package:mobile/ui/views/ebank/buyAbonnement/buyabonnementEbank.dart';
+import 'package:mobile/ui/views/ebank/buyPassView/buyPassView.dart';
+import 'package:mobile/ui/views/ebank/buyView/buyView.dart';
+import 'package:mobile/ui/views/ebank/depot/depot.dart';
+import 'package:mobile/ui/views/ebank/ebankLoginView/ebankLoginView.dart';
+import 'package:mobile/ui/views/ebank/ebankSignInView/ebankSignInView.dart';
+import 'package:mobile/ui/views/ebank/renewVisitePass/renewPassView.dart';
+import 'package:mobile/ui/views/ebank/retrait/retrait.dart';
+import 'package:mobile/ui/views/ebank/versement/versement.dart';
+import 'package:mobile/ui/views/ebank/versement_ret/versement_ret.dart';
+import 'package:mobile/ui/views/immo/catalogue/catalogue.dart';
+import 'package:mobile/ui/views/immo/imageNav/imgeNav.dart';
+import 'package:mobile/ui/views/immo/maisonVisite/maisonVisite.dart';
+import 'package:mobile/ui/views/immo/modifPlace/modifPlace.dart';
+import 'package:mobile/ui/views/immo/myVisite/myVisite.dart';
+import 'package:mobile/ui/views/immo/newPlace/newPlace.dart';
+import 'package:mobile/ui/views/immo/recherche/recherche.dart';
+import 'package:mobile/ui/views/immo/resultat/resultat.dart';
+import 'package:mobile/ui/views/immo/visite/visite.dart';
+import 'package:mobile/ui/views/passwordChangeView/passwordChangeView.dart';
+import 'package:mobile/ui/views/photoChangeView/photoChangeView.dart';
+import 'package:mobile/ui/views/profile/profile.dart';
+import 'package:mobile/ui/views/publicite/publicite_view.dart';
+import 'package:mobile/ui/views/tv/add_question_quotidien/add_question_view.dart';
+import 'package:mobile/ui/views/tv/bientot.dart';
+import 'package:mobile/ui/views/tv/chaneltv/channeltv.dart';
+import 'package:mobile/ui/views/tv/programmetv/programmetv.dart';
+import 'package:mobile/ui/views/tv/tv/tv.dart';
+import 'package:mobile/ui/views/tv/tv_exclu/tv_exclu.dart';
+import 'package:mobile/ui/views/tv/tv_films/tv_films.dart';
+import 'package:mobile/ui/views/tv/tv_live/tv_live.dart';
+import 'package:mobile/ui/views/tv/tv_pub/tv_pub.dart';
+import 'package:mobile/ui/views/tv/tv_sport/tv_sport.dart';
+import 'package:mobile/ui/views/tv/vainqueur/vainqueur_view.dart';
+import 'package:stacked/stacked_annotations.dart';
+import 'package:stacked_services/stacked_services.dart';
+
+import '../ui/views/tv/question_quotidien/questionView.dart';
+
+@StackedApp(routes: [
+  MaterialRoute(page: Acceuil, initial: true),
+  MaterialRoute(page: PubliciteView),
+  MaterialRoute(page: ConditionGeneralDUtilisationS),
+  MaterialRoute(page: ConditionGeneralDUtilisationSFinance),
+  MaterialRoute(page: CameraView),
+  MaterialRoute(page: CaptureView),
+  MaterialRoute(page: Profile),
+  MaterialRoute(page: PasswordChangeView),
+  MaterialRoute(page: PhotoChangeView),
+  MaterialRoute(page: SignInView),
+  MaterialRoute(page: IdentificationView),
+  MaterialRoute(page: LoginView),
+  MaterialRoute(page: Bank),
+  MaterialRoute(page: EbankLoginView),
+  MaterialRoute(page: EbankSignInView),
+  MaterialRoute(page: Depot),
+  MaterialRoute(page: Retrait),
+  MaterialRoute(page: Versement),
+  MaterialRoute(page: VersementRet),
+  MaterialRoute(page: Catalogue),
+  MaterialRoute(page: MyVisite),
+  MaterialRoute(page: NewPlace),
+  MaterialRoute(page: ModifPlace),
+  MaterialRoute(page: Recherche),
+  MaterialRoute(page: Resultat),
+  MaterialRoute(page: MaisonVisite),
+  MaterialRoute(page: RenewPassView),
+  MaterialRoute(page: Visite),
+  MaterialRoute(page: ImageNav),
+  MaterialRoute(page: ProgrammeTv),
+  MaterialRoute(page: ChanelTv),
+  MaterialRoute(page: Bientot),
+  MaterialRoute(page: Tv),
+  MaterialRoute(page: TvPub),
+  MaterialRoute(page: TvLive),
+  MaterialRoute(page: TvSport),
+  MaterialRoute(page: TvExclu),
+  MaterialRoute(page: TvFilm),
+  MaterialRoute(page: BuyView),
+  MaterialRoute(page: BuyVisitePass),
+  MaterialRoute(page: BuyPassView),
+  MaterialRoute(page: BuyAbonnement),
+  MaterialRoute(page: BuyAbonnementEbank),
+  MaterialRoute(page: QuestionView),
+  MaterialRoute(page: AddQuestionView),
+  MaterialRoute(page: VainqueurView)
+], dependencies: [
+  InitializableSingleton(classType: TelaSharedPrefs),
+  InitializableSingleton(classType: TVService),
+  // InitializableSingleton(classType: TelaNotification),
+  Singleton(classType: AuthService),
+  Singleton(classType: PlaceService),
+  Singleton(classType: TransactionService),
+  LazySingleton(classType: NavigationService),
+  LazySingleton(classType: DialogService),
+  LazySingleton(classType: BottomSheetService),
+  LazySingleton(classType: SnackbarService),
+])
+class appSetup {}
